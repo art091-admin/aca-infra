@@ -95,6 +95,7 @@ else
 fi
 
 
+
 #Launching EC2 Instance
 
 echo "Creating EC2 Instance"
