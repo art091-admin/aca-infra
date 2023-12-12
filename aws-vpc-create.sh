@@ -54,7 +54,7 @@ CREATED_INTERNET_GATEWAY_ID=$(aws ec2 create-internet-gateway --query InternetGa
 SUBNET_TAGS=$(aws ec2 create-tags --resources $CREATED_INTERNET_GATEWAY_ID --tags Key=Name,Value=IGW-VPCid-$CREATED_VPC_ID)
 $(aws ec2 attach-internet-gateway --internet-gateway-id $CREATED_INTERNET_GATEWAY_ID --vpc-id $CREATED_VPC_ID)
 
-if [ $? -eq 0]; then
+if [ $? -eq 0 ]; then
 	echo "InternetGateway is successfully created"
 else
 	echo "Failed creating"
