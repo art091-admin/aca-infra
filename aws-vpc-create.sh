@@ -100,11 +100,11 @@ fi
 #Launching EC2 Instance
 
 echo "Creating EC2 Instance"
-INSTANCE_ID=$(aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name lesson-3-virginia --security-group-ids $SECURITY_GROUP_ID --subnet-id $CREATED_SUBNET_ID --network-interfaces '[{"DeviceIndex":0,"AssociatePublicIpAddress":true}]' --query Instances.InstanceId --output text)
+INSTANCE_ID=$(aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name lesson-3-virginia --security-group-ids $SECURITY_GROUP_ID --subnet-id $CREATED_SUBNET_ID --network-interfaces '[{"DeviceIndex":0,"AssociatePublicIpAddress":true}]' --query Instances[*].InstanceId --output text)
+INSTANCE_TAGS=$(aws ec2 create-tags --resources $INSTANCE_ID --tags Key=Name,Value=EC2-VPCid-$CREATED_VPC_ID)
 if [ $? -eq 0 ]; then
     echo "Instance launched successfully. Instance ID: $INSTANCE_ID"
 else
     echo "Failed to launch instance. Check for errors."
 fi
-INSTANCE_TAGS=$(aws create-tags --resources $INSTANCE_ID --tags Key=Name,Value=EC2-VPCid-$CREATED_VPC_ID)
 echo "Done"
