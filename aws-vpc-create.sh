@@ -1,25 +1,5 @@
 #!/bin/bash
 
-CONFIG_FILE=~/.aws/config
-REGION=""
-
-while IFS=' = ' read key value
-do
-    if [[ $key == \[*] ]]; then
-        section=$key
-    elif [[ $value ]] && [[ $section == '[default]' ]]; then
-        if [[ $key == 'region' ]]; then
-            DEFAULT_REGION=$value
-	fi    
-    fi
-done < $CREDENTIALS_FILE
-
-if [[ -z "$DEFAULT_REGION" ]]; then
-	REGION=$REGION
-else
-	REGION=$DEFAULT_REGION
-fi
-
 #Create VPC with tags
 echo "Creating VPC...."
 
