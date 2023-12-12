@@ -25,6 +25,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Upgrade AWS CLI
+        run: |
+          sudo apt-get upgrade --only-upgrade awscli
+
+
       # - name: Install AWS CLI
       #   run: |
       #     sudo apt-get update
