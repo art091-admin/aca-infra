@@ -85,7 +85,7 @@ fi
 echo "Creating Security Group"
 
 SECURITY_GROUP_ID=$(aws ec2 create-security-group --group-name MyVPCSecurityGroup --description "Security Group For My VPC" --vpc-id $CREATED_VPC_ID --query GroupId --output text) && echo "Security Group is successfully created" || echo "Failed creating $(aws ec2 delete-vpc --vpc-id $CREATED_VPC_ID)"
-$(aws ec2 authorize-security-group-ingress --group-id $SECURITY_GROUP_ID --protocol tcp --port 22 --cidr 0.0.0.0/0)
+GROUPE_RULE=$(aws ec2 authorize-security-group-ingress --group-id $SECURITY_GROUP_ID --protocol tcp --port 22 --cidr 0.0.0.0/0)
 
 if [ $? -eq 0 ]; then
 	echo "The Vpc is successfully  created"
