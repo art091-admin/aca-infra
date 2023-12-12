@@ -18,17 +18,13 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # - name: Install AWS CLI
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y awscli
 
       - name: Set AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -36,10 +32,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
-        # run: |
-        #   aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY }}
-        #   aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_KEY }}
-        #   aws configure set default.region us-east-1
 
       # Runs a set of commands using the runners shell
       - name: Run script
