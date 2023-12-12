@@ -30,6 +30,7 @@ jobs:
         with:
           aws-access-key: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: "us-east-1"
 
       # Runs a set of commands using the runners shell
       - name: Run script
